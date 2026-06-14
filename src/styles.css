@@ -145,20 +145,21 @@
 @utility pill-primary {
   background: var(--teal);
   color: var(--white);
-}
-@utility pill-primary:hover {
-  background: #0a6155;
-  transform: scale(1.02);
+  &:hover {
+    background: #0a6155;
+    transform: scale(1.02);
+  }
 }
 @utility pill-ghost {
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--ink);
+  &:hover {
+    background: var(--ink);
+    color: var(--white);
+  }
 }
-@utility pill-ghost:hover {
-  background: var(--ink);
-  color: var(--white);
-}
+
 
 @utility eyebrow {
   font-family: var(--font-mono);
