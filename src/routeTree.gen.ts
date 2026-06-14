@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WaitlistRouteImport } from './routes/waitlist'
 import { Route as VendorsRouteImport } from './routes/vendors'
 import { Route as TribeRouteImport } from './routes/tribe'
 import { Route as PassportRouteImport } from './routes/passport'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WaitlistRoute = WaitlistRouteImport.update({
+  id: '/waitlist',
+  path: '/waitlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VendorsRoute = VendorsRouteImport.update({
   id: '/vendors',
   path: '/vendors',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/passport': typeof PassportRoute
   '/tribe': typeof TribeRoute
   '/vendors': typeof VendorsRoute
+  '/waitlist': typeof WaitlistRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/passport': typeof PassportRoute
   '/tribe': typeof TribeRoute
   '/vendors': typeof VendorsRoute
+  '/waitlist': typeof WaitlistRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,27 @@ export interface FileRoutesById {
   '/passport': typeof PassportRoute
   '/tribe': typeof TribeRoute
   '/vendors': typeof VendorsRoute
+  '/waitlist': typeof WaitlistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/marketplace' | '/passport' | '/tribe' | '/vendors'
+  fullPaths:
+    | '/'
+    | '/marketplace'
+    | '/passport'
+    | '/tribe'
+    | '/vendors'
+    | '/waitlist'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/marketplace' | '/passport' | '/tribe' | '/vendors'
-  id: '__root__' | '/' | '/marketplace' | '/passport' | '/tribe' | '/vendors'
+  to: '/' | '/marketplace' | '/passport' | '/tribe' | '/vendors' | '/waitlist'
+  id:
+    | '__root__'
+    | '/'
+    | '/marketplace'
+    | '/passport'
+    | '/tribe'
+    | '/vendors'
+    | '/waitlist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +99,18 @@ export interface RootRouteChildren {
   PassportRoute: typeof PassportRoute
   TribeRoute: typeof TribeRoute
   VendorsRoute: typeof VendorsRoute
+  WaitlistRoute: typeof WaitlistRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/waitlist': {
+      id: '/waitlist'
+      path: '/waitlist'
+      fullPath: '/waitlist'
+      preLoaderRoute: typeof WaitlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vendors': {
       id: '/vendors'
       path: '/vendors'
@@ -125,6 +155,7 @@ const rootRouteChildren: RootRouteChildren = {
   PassportRoute: PassportRoute,
   TribeRoute: TribeRoute,
   VendorsRoute: VendorsRoute,
+  WaitlistRoute: WaitlistRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
