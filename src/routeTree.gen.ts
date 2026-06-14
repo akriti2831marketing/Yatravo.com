@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TribeRouteImport } from './routes/tribe'
 import { Route as PassportRouteImport } from './routes/passport'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TribeRoute = TribeRouteImport.update({
+  id: '/tribe',
+  path: '/tribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PassportRoute = PassportRouteImport.update({
   id: '/passport',
   path: '/passport',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/passport': typeof PassportRoute
+  '/tribe': typeof TribeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/passport': typeof PassportRoute
+  '/tribe': typeof TribeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/passport': typeof PassportRoute
+  '/tribe': typeof TribeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/passport'
+  fullPaths: '/' | '/passport' | '/tribe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/passport'
-  id: '__root__' | '/' | '/passport'
+  to: '/' | '/passport' | '/tribe'
+  id: '__root__' | '/' | '/passport' | '/tribe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PassportRoute: typeof PassportRoute
+  TribeRoute: typeof TribeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tribe': {
+      id: '/tribe'
+      path: '/tribe'
+      fullPath: '/tribe'
+      preLoaderRoute: typeof TribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/passport': {
       id: '/passport'
       path: '/passport'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PassportRoute: PassportRoute,
+  TribeRoute: TribeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
