@@ -14,7 +14,116 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      trip_confirmations: {
+        Row: {
+          confirmation_type: string | null
+          confirmed_by_user_id: string
+          created_at: string
+          id: string
+          trip_id: string
+        }
+        Insert: {
+          confirmation_type?: string | null
+          confirmed_by_user_id: string
+          created_at?: string
+          id?: string
+          trip_id: string
+        }
+        Update: {
+          confirmation_type?: string | null
+          confirmed_by_user_id?: string
+          created_at?: string
+          id?: string
+          trip_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trip_confirmations_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trips: {
+        Row: {
+          budget_tier: string | null
+          created_at: string
+          destination: string
+          end_date: string
+          gmail_verified: boolean
+          id: string
+          note: string | null
+          photo_urls: string[] | null
+          start_date: string
+          travel_style: string | null
+          user_id: string
+        }
+        Insert: {
+          budget_tier?: string | null
+          created_at?: string
+          destination: string
+          end_date: string
+          gmail_verified?: boolean
+          id?: string
+          note?: string | null
+          photo_urls?: string[] | null
+          start_date: string
+          travel_style?: string | null
+          user_id: string
+        }
+        Update: {
+          budget_tier?: string | null
+          created_at?: string
+          destination?: string
+          end_date?: string
+          gmail_verified?: boolean
+          id?: string
+          note?: string | null
+          photo_urls?: string[] | null
+          start_date?: string
+          travel_style?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_trust_scores: {
+        Row: {
+          last_calculated: string
+          trust_score: number
+          user_id: string
+        }
+        Insert: {
+          last_calculated?: string
+          trust_score?: number
+          user_id: string
+        }
+        Update: {
+          last_calculated?: string
+          trust_score?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
