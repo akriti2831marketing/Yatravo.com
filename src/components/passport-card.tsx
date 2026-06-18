@@ -13,7 +13,7 @@ export function PassportCard({ floating = false }: { floating?: boolean }) {
       <div className="flex items-start justify-between">
         <div>
           <div className="font-mono-accent text-[10px] uppercase tracking-widest text-white/60">
-            Stamped · Travel Passport
+            Yatravo · Travel Passport
           </div>
           <div className="mt-1 font-mono-accent text-xs text-white/70">No. 002412</div>
         </div>

@@ -4,9 +4,9 @@ import { SiteShell } from "@/components/site-chrome";
 export const Route = createFileRoute("/vendors")({
   head: () => ({
     meta: [
-      { title: "For Vendors — Stamped" },
+      { title: "For Vendors — Yatravo" },
       { name: "description", content: "List your homestay, guide service, or local business for ₹999/month. No commissions. Verified travelers." },
-      { property: "og:title", content: "For Vendors — Stamped" },
+      { property: "og:title", content: "For Vendors — Yatravo" },
       { property: "og:description", content: "Stop paying 28% to platforms that don't care if your guests come back. Flat ₹999/month." },
       { property: "og:url", content: "/vendors" },
     ],
@@ -41,7 +41,7 @@ function VendorsPage() {
             {[
               { p: "Booking.com takes", v: "₹14,000", neg: true },
               { p: "MakeMyTrip takes", v: "₹12,500", neg: true },
-              { p: "Stamped takes", v: "₹999", brand: true },
+              { p: "Yatravo takes", v: "₹999", brand: true },
             ].map((r) => (
               <div key={r.p} className="flex items-baseline justify-between py-6">
                 <div className="text-lg text-white/80">{r.p}</div>

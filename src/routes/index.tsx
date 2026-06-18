@@ -5,13 +5,13 @@ import { PassportCard } from "@/components/passport-card";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stamped — Your lifelong travel identity" },
+      { title: "Yatravo — Your lifelong travel identity" },
       {
         name: "description",
         content:
           "Not a booking app. A living record of every trip you've taken, every place you've loved, and every traveler going where you're going next.",
       },
-      { property: "og:title", content: "Stamped — Your lifelong travel identity" },
+      { property: "og:title", content: "Yatravo — Your lifelong travel identity" },
       {
         property: "og:description",
         content:

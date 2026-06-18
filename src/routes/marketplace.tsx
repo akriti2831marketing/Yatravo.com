@@ -4,9 +4,9 @@ import { SiteShell } from "@/components/site-chrome";
 export const Route = createFileRoute("/marketplace")({
   head: () => ({
     meta: [
-      { title: "Local Marketplace — Stamped" },
+      { title: "Local Marketplace — Yatravo" },
       { name: "description", content: "Homestays, local guides, family dhabas, and hidden stays at honest prices — flat-fee, not commission." },
-      { property: "og:title", content: "Local Marketplace — Stamped" },
+      { property: "og:title", content: "Local Marketplace — Yatravo" },
       { property: "og:description", content: "The stays, guides, and food trails that never needed to advertise. Until now." },
       { property: "og:url", content: "/marketplace" },
     ],
@@ -77,7 +77,7 @@ function MarketplacePage() {
             </div>
             <div className="stamp-card p-8" style={{ background: "var(--teal)", color: "white", borderColor: "transparent" }}>
               <div className="font-mono-accent text-xs uppercase text-white/60">Our way</div>
-              <div className="mt-2 font-display text-2xl text-white">Stamped</div>
+              <div className="mt-2 font-display text-2xl text-white">Yatravo</div>
               <ul className="mt-6 space-y-3 text-sm text-white/85">
                 <li className="flex gap-3"><span className="text-white/50">+</span>₹999/month flat — forever</li>
                 <li className="flex gap-3"><span className="text-white/50">+</span>Identity-verified reviews only</li>

@@ -12,9 +12,9 @@ import { computeBadges, computeTrustScore, type Trip } from "@/lib/trips";
 export const Route = createFileRoute("/passport")({
   head: () => ({
     meta: [
-      { title: "Travel Passport — Stamped" },
+      { title: "Travel Passport — Yatravo" },
       { name: "description", content: "Your travel life, in one place. Log trips, earn verified badges, build your travel identity." },
-      { property: "og:title", content: "Travel Passport — Stamped" },
+      { property: "og:title", content: "Travel Passport — Yatravo" },
       { property: "og:description", content: "Log every trip. Earn verified badges. Build your travel identity." },
       { property: "og:url", content: "/passport" },
     ],
