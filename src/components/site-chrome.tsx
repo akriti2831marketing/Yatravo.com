@@ -29,7 +29,7 @@ export function SiteNav() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
         <Link to="/" className="font-display font-semibold text-xl text-ink tracking-tight">
-          Stamped<span className="text-teal">.</span>
+          Yatravo<span className="text-teal">.</span>
         </Link>
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
@@ -83,7 +83,7 @@ export function SiteFooter() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="max-w-sm">
             <div className="font-display font-semibold text-2xl">
-              Stamped<span className="text-teal">.</span>
+              Yatravo<span className="text-teal">.</span>
             </div>
             <p className="mt-3 text-sm text-mute">
               The travel passport for people who actually travel.
@@ -99,7 +99,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-12 pt-6 border-t border-sand text-xs text-mute font-mono-accent">
-          © 2026 Stamped. Built for travelers who actually travel.
+          © 2026 Yatravo. Built for travelers who actually travel.
         </div>
       </div>
     </footer>

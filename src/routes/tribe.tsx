@@ -4,9 +4,9 @@ import { SiteShell } from "@/components/site-chrome";
 export const Route = createFileRoute("/tribe")({
   head: () => ({
     meta: [
-      { title: "Find Your Tribe — Stamped" },
+      { title: "Find Your Tribe — Yatravo" },
       { name: "description", content: "Tribe matching connects travelers by destination, dates, budget, and travel style — verified by real trip history." },
-      { property: "og:title", content: "Find Your Tribe — Stamped" },
+      { property: "og:title", content: "Find Your Tribe — Yatravo" },
       { property: "og:description", content: "Find verified co-travelers heading where you are. Split costs. Share cabs. Travel better." },
       { property: "og:url", content: "/tribe" },
     ],

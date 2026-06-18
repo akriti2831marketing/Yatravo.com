@@ -4,9 +4,9 @@ import { useState } from "react";
 export const Route = createFileRoute("/waitlist")({
   head: () => ({
     meta: [
-      { title: "Join the Waitlist — Stamped" },
+      { title: "Join the Waitlist — Yatravo" },
       { name: "description", content: "Be the first to carry your passport. Join 2,400+ travelers and vendors already on the list." },
-      { property: "og:title", content: "Join the Waitlist — Stamped" },
+      { property: "og:title", content: "Join the Waitlist — Yatravo" },
       { property: "og:description", content: "Travelers get 6 months free passport premium. Vendors get 3 months free listing." },
       { property: "og:url", content: "/waitlist" },
     ],
@@ -23,7 +23,7 @@ function WaitlistPage() {
     <div className="min-h-screen bg-canvas">
       <header className="px-6 lg:px-10 py-6 border-b border-sand">
         <Link to="/" className="font-display font-semibold text-xl text-ink">
-          Stamped<span className="text-teal">.</span>
+          Yatravo<span className="text-teal">.</span>
         </Link>
       </header>
 

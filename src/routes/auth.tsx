@@ -7,8 +7,8 @@ import { lovable } from "@/integrations/lovable/index";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Sign in — Stamped" },
-      { name: "description", content: "Sign in or create your Stamped passport account." },
+      { title: "Sign in — Yatravo" },
+      { name: "description", content: "Sign in or create your Yatravo passport account." },
     ],
   }),
   component: AuthPage,
@@ -74,7 +74,7 @@ function AuthPage() {
     <div className="min-h-screen bg-canvas flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-md">
         <Link to="/" className="font-display font-semibold text-2xl tracking-tight">
-          Stamped<span className="text-teal">.</span>
+          Yatravo<span className="text-teal">.</span>
         </Link>
         <h1 className="mt-8 font-display text-3xl">
           {mode === "signin" ? "Welcome back." : "Start your passport."}
