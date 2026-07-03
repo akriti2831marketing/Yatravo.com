@@ -7,6 +7,16 @@ import { supabase } from "@/integrations/supabase/client";
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+  const accountType = (user?.user_metadata as any)?.account_type as "vendor" | "customer" | undefined;
+
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+    toast.success("Signed out");
+    navigate({ to: "/" });
+  }
+
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
