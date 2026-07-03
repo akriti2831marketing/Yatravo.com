@@ -121,12 +121,6 @@ export function SiteNav() {
   );
 }
 
-        </div>
-      )}
-    </header>
-  );
-}
-
 export function SiteFooter() {
   return (
     <footer className="bg-canvas border-t border-sand">
