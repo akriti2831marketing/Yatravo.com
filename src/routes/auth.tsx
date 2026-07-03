@@ -28,7 +28,10 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/passport" });
+      if (data.session) {
+        const t = (data.session.user.user_metadata as any)?.account_type;
+        navigate({ to: t === "vendor" ? "/vendors" : "/passport" });
+      }
     });
   }, [navigate]);
 
@@ -40,18 +43,23 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email, password,
           options: {
-            emailRedirectTo: `${window.location.origin}/passport`,
-            data: { display_name: name || email.split("@")[0] },
+            emailRedirectTo: `${window.location.origin}${destination}`,
+            data: { display_name: name || email.split("@")[0], account_type: accountType },
           },
         });
         if (error) throw error;
         toast.success("Account created — you're in!");
-        navigate({ to: "/passport" });
+        navigate({ to: destination });
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        const { error, data } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
+        // Update account_type on sign-in if user chose a different one
+        const existing = (data.user?.user_metadata as any)?.account_type;
+        if (existing !== accountType) {
+          await supabase.auth.updateUser({ data: { account_type: accountType } });
+        }
         toast.success("Welcome back");
-        navigate({ to: "/passport" });
+        navigate({ to: destination });
       }
     } catch (err: any) {
       toast.error(err.message ?? "Something went wrong");
@@ -62,8 +70,10 @@ function AuthPage() {
 
   async function handleGoogle() {
     setBusy(true);
+    // Stash chosen account type so we can persist it after OAuth returns
+    try { sessionStorage.setItem("yatravo_account_type", accountType); } catch {}
     const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: `${window.location.origin}/passport`,
+      redirect_uri: `${window.location.origin}${destination}`,
     });
     if (result.error) {
       toast.error("Google sign-in failed");
@@ -71,8 +81,10 @@ function AuthPage() {
       return;
     }
     if (result.redirected) return;
-    navigate({ to: "/passport" });
+    await supabase.auth.updateUser({ data: { account_type: accountType } });
+    navigate({ to: destination });
   }
+
 
   return (
     <div className="min-h-screen bg-canvas flex items-center justify-center px-6 py-12">
