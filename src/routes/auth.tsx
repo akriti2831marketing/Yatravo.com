@@ -99,6 +99,29 @@ function AuthPage() {
           {mode === "signin" ? "Sign in to log trips and earn badges." : "It's free. Forever."}
         </p>
 
+        <div className="mt-6">
+          <div className="eyebrow mb-2">I'm signing in as</div>
+          <div className="grid grid-cols-2 gap-2 p-1 rounded-full border border-sand bg-white">
+            {(["customer", "vendor"] as const).map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setAccountType(t)}
+                className={`text-sm py-2 rounded-full transition-colors ${
+                  accountType === t ? "bg-teal text-white" : "text-ink/70 hover:text-ink"
+                }`}
+              >
+                {t === "customer" ? "Traveler" : "Vendor"}
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-mute">
+            {accountType === "vendor"
+              ? "List stays & experiences, manage bookings."
+              : "Log trips, earn badges, discover local stays."}
+          </p>
+        </div>
+
         <button
           onClick={handleGoogle}
           disabled={busy}
