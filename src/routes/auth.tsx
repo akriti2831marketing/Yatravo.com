@@ -17,10 +17,14 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   const navigate = useNavigate();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [accountType, setAccountType] = useState<"customer" | "vendor">("customer");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
+
+  const destination = accountType === "vendor" ? "/vendors" : "/passport";
+
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
