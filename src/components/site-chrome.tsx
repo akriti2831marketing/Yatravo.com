@@ -102,7 +102,25 @@ export function SiteNav() {
             <Link to="/waitlist" onClick={() => setOpen(false)} className="pill-cta pill-primary text-sm self-start">
               Get early access
             </Link>
+            {!loading && user ? (
+              <button
+                onClick={() => { setOpen(false); handleSignOut(); }}
+                className="pill-cta pill-ghost text-sm self-start"
+              >
+                Sign out{accountType ? ` (${accountType})` : ""}
+              </button>
+            ) : (
+              <Link to="/auth" onClick={() => setOpen(false)} className="pill-cta pill-ghost text-sm self-start">
+                Sign in
+              </Link>
+            )}
           </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
         </div>
       )}
     </header>
