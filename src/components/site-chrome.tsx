@@ -1,9 +1,22 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { useAuth } from "@/hooks/use-auth";
+import { supabase } from "@/integrations/supabase/client";
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+  const accountType = (user?.user_metadata as any)?.account_type as "vendor" | "customer" | undefined;
+
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+    toast.success("Signed out");
+    navigate({ to: "/" });
+  }
+
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -44,9 +57,28 @@ export function SiteNav() {
           ))}
         </div>
         <div className="flex items-center gap-3">
-          <Link to="/waitlist" className="pill-cta pill-primary text-sm hidden sm:inline-flex">
-            Get early access
-          </Link>
+          {!loading && user ? (
+            <>
+              {accountType && (
+                <span className="hidden md:inline-flex font-mono-accent text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-sand/60 text-ink/70">
+                  {accountType}
+                </span>
+              )}
+              <Link
+                to={accountType === "vendor" ? "/vendors" : "/passport"}
+                className="hidden sm:inline-flex text-sm font-medium text-ink/80 hover:text-teal"
+              >
+                Account
+              </Link>
+              <button onClick={handleSignOut} className="pill-cta pill-ghost text-sm">
+                Sign out
+              </button>
+            </>
+          ) : (
+            <Link to="/auth" className="pill-cta pill-primary text-sm hidden sm:inline-flex">
+              Sign in
+            </Link>
+          )}
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen(!open)}
@@ -57,6 +89,7 @@ export function SiteNav() {
             </svg>
           </button>
         </div>
+
       </nav>
       {open && (
         <div className="md:hidden border-t border-sand bg-white">
@@ -69,6 +102,18 @@ export function SiteNav() {
             <Link to="/waitlist" onClick={() => setOpen(false)} className="pill-cta pill-primary text-sm self-start">
               Get early access
             </Link>
+            {!loading && user ? (
+              <button
+                onClick={() => { setOpen(false); handleSignOut(); }}
+                className="pill-cta pill-ghost text-sm self-start"
+              >
+                Sign out{accountType ? ` (${accountType})` : ""}
+              </button>
+            ) : (
+              <Link to="/auth" onClick={() => setOpen(false)} className="pill-cta pill-ghost text-sm self-start">
+                Sign in
+              </Link>
+            )}
           </div>
         </div>
       )}
