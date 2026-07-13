@@ -5,9 +5,9 @@ export const Route = createFileRoute("/tribe")({
   head: () => ({
     meta: [
       { title: "Find Your Tribe — Yatravo" },
-      { name: "description", content: "Tribe matching connects travelers by destination, dates, budget, and travel style — verified by real trip history." },
+      { name: "description", content: "Find real travelers heading to the same place, at the same time, with the same budget — verified by their actual trip history." },
       { property: "og:title", content: "Find Your Tribe — Yatravo" },
-      { property: "og:description", content: "Find verified co-travelers heading where you are. Split costs. Share cabs. Travel better." },
+      { property: "og:description", content: "Find verified co-travelers heading where you are. Split costs. Share cabs. Travel better. Free to join." },
       { property: "og:url", content: "/tribe" },
     ],
     links: [{ rel: "canonical", href: "/tribe" }],
@@ -22,10 +22,10 @@ function TribePage() {
         <div className="max-w-4xl mx-auto">
           <div className="eyebrow">tribe matching</div>
           <h1 className="mt-5 font-display font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">
-            Someone is going to Kasol next weekend. They just don't know you yet.
+            Someone is heading to Kasol next weekend. They just haven't found you yet.
           </h1>
           <p className="mt-6 text-lg text-mute max-w-2xl leading-relaxed">
-            Tribe matching connects travelers by destination, dates, budget, and travel style — verified by real trip history, not a dating-app bio.
+            Yatravo matches you with real travelers heading to the same place, at the same time, with the same budget — verified by their actual trip history, not a profile they wrote in 2 minutes.
           </p>
         </div>
       </section>
@@ -34,14 +34,14 @@ function TribePage() {
         <div className="max-w-7xl mx-auto">
           <div className="eyebrow">how matching works</div>
           <h2 className="mt-4 font-display text-4xl lg:text-5xl max-w-3xl leading-tight">
-            Four steps from "I'm going alone" to "we're splitting the cab."
+            Finding the right travel partner used to be luck. Not anymore.
           </h2>
           <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { n: "01", t: "Set your trip", d: "Destination, dates, and budget range." },
-              { n: "02", t: "We scan passports", d: "Only travelers with verified history in that region." },
-              { n: "03", t: "Browse profiles", d: "See trips logged, pace, budget tier, and travel style." },
-              { n: "04", t: "Connect", d: "Split costs, share a cab, or just have backup." },
+              { n: "01", t: "Set your trip", d: "Tell us where you're going and when you're heading there." },
+              { n: "02", t: "We find real matches", d: "We look at real traveler profiles — trips logged, badges earned, travel style verified — and find the ones who genuinely match yours." },
+              { n: "03", t: "Browse their passport", d: "See where they've been, how they travel, and what kind of trips they take." },
+              { n: "04", t: "Connect", d: "Plan together, split costs — or just have a familiar face at your destination." },
             ].map((s) => (
               <div key={s.n} className="stamp-card p-6">
                 <div className="font-mono-accent text-xs text-teal">{s.n}</div>
@@ -56,17 +56,17 @@ function TribePage() {
       <section className="section-pad px-6 lg:px-10">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="font-display text-4xl leading-tight">Only verified passport holders can match.</h2>
+            <h2 className="font-display text-4xl leading-tight">We take who you meet seriously.</h2>
             <p className="mt-4 text-mute max-w-md">
-              Trust is the whole point. Every traveler you see has logged trips we can verify.
+              Every traveler you see on Yatravo has a verified passport. Real trips. Real history. Real accountability.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              "Identity verification",
-              "Trip history visible",
-              "Community reporting",
-              "Optional video intro",
+              "Real trip history visible before you connect",
+              "Community-verified profiles",
+              "Report and block, always available",
+              "Your safety is never optional",
             ].map((t) => (
               <div key={t} className="stamp-card p-5 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-teal-light text-teal flex items-center justify-center">
@@ -88,9 +88,9 @@ function TribePage() {
           </h2>
           <div className="mt-12 grid md:grid-cols-3 gap-5">
             {[
-              { t: "Split the cab to Leh", d: "Four travelers, one shared SUV, ₹4,200 saved each way." },
-              { t: "Find a trek partner for Roopkund", d: "Match by pace and experience, not who replied first on Reddit." },
-              { t: "Co-rent a villa in Goa for 4", d: "Two couples, one villa, half the price each." },
+              { t: "Split the cab to Leh", d: "Four people, one cab, a fraction of the cost. Find your co-riders before you go." },
+              { t: "Find a trek partner for Roopkund", d: "Some trails are better with someone who's got your back. Find them here." },
+              { t: "Co-plan a Goa trip", d: "A villa that sleeps 6 is half the price per person. Find your group and make it happen." },
             ].map((u) => (
               <div key={u.t} className="border-l-4 border-teal bg-white/[0.03] p-6 rounded-lg">
                 <div className="font-display text-xl text-white">{u.t}</div>
@@ -100,7 +100,7 @@ function TribePage() {
           </div>
           <div className="mt-14">
             <Link to="/waitlist" className="pill-cta bg-white text-teal hover:bg-canvas">
-              Find who's going where you're going
+              Find who's going where you're going — it's free
             </Link>
           </div>
         </div>

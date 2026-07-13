@@ -27,9 +27,9 @@ export function SiteNav() {
 
   const links = [
     { to: "/passport", label: "Passport" },
-    { to: "/tribe", label: "Tribe" },
-    { to: "/marketplace", label: "Marketplace" },
-    { to: "/vendors", label: "For Vendors" },
+    { to: "/tribe", label: "Find your tribe" },
+    { to: "/marketplace", label: "Local stays" },
+    { to: "/vendors", label: "For local businesses" },
   ] as const;
 
   return (
@@ -76,7 +76,7 @@ export function SiteNav() {
             </>
           ) : (
             <Link to="/auth" className="pill-cta pill-primary text-sm hidden sm:inline-flex">
-              Sign in
+              Join free
             </Link>
           )}
           <button
@@ -100,7 +100,7 @@ export function SiteNav() {
               </Link>
             ))}
             <Link to="/waitlist" onClick={() => setOpen(false)} className="pill-cta pill-primary text-sm self-start">
-              Get early access
+              Join free
             </Link>
             {!loading && user ? (
               <button
@@ -136,15 +136,15 @@ export function SiteFooter() {
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink/80">
             <Link to="/passport" className="hover:text-teal">Passport</Link>
-            <Link to="/tribe" className="hover:text-teal">Tribe</Link>
-            <Link to="/marketplace" className="hover:text-teal">Marketplace</Link>
-            <Link to="/vendors" className="hover:text-teal">For Vendors</Link>
+            <Link to="/tribe" className="hover:text-teal">Find your tribe</Link>
+            <Link to="/marketplace" className="hover:text-teal">Local stays</Link>
+            <Link to="/vendors" className="hover:text-teal">For local businesses</Link>
             <a href="#" className="hover:text-teal">Privacy</a>
             <a href="#" className="hover:text-teal">Terms</a>
           </div>
         </div>
         <div className="mt-12 pt-6 border-t border-sand text-xs text-mute font-mono-accent">
-          © 2026 Yatravo. Built for travelers who actually travel.
+          © 2025 Yatravo. Built by travelers, for travelers.
         </div>
       </div>
     </footer>

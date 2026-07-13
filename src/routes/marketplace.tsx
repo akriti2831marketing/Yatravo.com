@@ -4,10 +4,10 @@ import { SiteShell } from "@/components/site-chrome";
 export const Route = createFileRoute("/marketplace")({
   head: () => ({
     meta: [
-      { title: "Local Marketplace — Yatravo" },
-      { name: "description", content: "Homestays, local guides, family dhabas, and hidden stays at honest prices — flat-fee, not commission." },
-      { property: "og:title", content: "Local Marketplace — Yatravo" },
-      { property: "og:description", content: "The stays, guides, and food trails that never needed to advertise. Until now." },
+      { title: "Local Stays & Guides — Yatravo" },
+      { name: "description", content: "Homestays, local guides, family dhabas, and hidden stays — listed directly by locals. No middlemen. No commissions." },
+      { property: "og:title", content: "Local Stays & Guides — Yatravo" },
+      { property: "og:description", content: "The best places to stay have never been on Booking.com. Discover honest places at honest prices." },
       { property: "og:url", content: "/marketplace" },
     ],
     links: [{ rel: "canonical", href: "/marketplace" }],
@@ -15,12 +15,19 @@ export const Route = createFileRoute("/marketplace")({
   component: MarketplacePage,
 });
 
-const cats = ["Homestays", "Local Guides", "Food Trails", "Adventure Operators", "Heritage Stays", "Wellness Retreats"];
+const cats = [
+  "Family Homestays",
+  "Local Trek Guides",
+  "Hidden Food Spots",
+  "Adventure Operators",
+  "Heritage Properties",
+  "Wellness Retreats",
+];
 
 const vendors = [
-  { name: "Devi's Homestay", loc: "Manali, HP", cat: "Homestay", since: "Mar 2025", reviews: 47, rating: 4.9 },
-  { name: "Coorg Trails", loc: "Madikeri, KA", cat: "Local Guide", since: "Feb 2025", reviews: 32, rating: 4.8 },
-  { name: "Old Town Dhaba", loc: "Amritsar, PB", cat: "Food Trail", since: "Apr 2025", reviews: 89, rating: 4.9 },
+  { name: "Devi's Homestay", loc: "Manali, HP", cat: "Family Homestay", since: "Mar 2025", reviews: 47, rating: 4.9 },
+  { name: "Coorg Trails", loc: "Madikeri, KA", cat: "Local Trek Guide", since: "Feb 2025", reviews: 32, rating: 4.8 },
+  { name: "Old Town Dhaba", loc: "Amritsar, PB", cat: "Hidden Food Spot", since: "Apr 2025", reviews: 89, rating: 4.9 },
 ];
 
 function MarketplacePage() {
@@ -28,12 +35,12 @@ function MarketplacePage() {
     <SiteShell>
       <section className="px-6 lg:px-10 pt-16 lg:pt-24 pb-16 bg-ember-light">
         <div className="max-w-5xl mx-auto">
-          <div className="eyebrow" style={{ color: "var(--ember)" }}>marketplace</div>
+          <div className="eyebrow" style={{ color: "var(--ember)" }}>local stays & guides</div>
           <h1 className="mt-5 font-display font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">
-            The places that never needed to advertise. Until now.
+            The best places to stay have never been on Booking.com.
           </h1>
           <p className="mt-6 text-lg text-mute max-w-2xl leading-relaxed">
-            Homestays, local guides, family dhabas, and hidden stays — listed at honest prices because we charge vendors a flat fee, not a percentage.
+            Yatravo's local marketplace connects you directly with homestays, guides, and hidden gems that are listed here because they care about the right travelers showing up — not the most travelers.
           </p>
         </div>
       </section>
@@ -63,27 +70,21 @@ function MarketplacePage() {
 
       <section className="section-pad px-6 lg:px-10 bg-teal-light/40">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-display text-4xl lg:text-5xl max-w-3xl leading-tight">Why vendors love us.</h2>
+          <h2 className="font-display text-4xl lg:text-5xl max-w-3xl leading-tight">Honest places. Honest prices. Nothing in between.</h2>
           <div className="mt-12 grid md:grid-cols-2 gap-6">
             <div className="stamp-card stamp-card-ember p-8">
-              <div className="font-mono-accent text-xs uppercase text-mute">The old way</div>
-              <div className="mt-2 font-display text-2xl">Booking.com</div>
-              <ul className="mt-6 space-y-3 text-sm text-ink/80">
-                <li className="flex gap-3"><span className="text-[var(--ember)]">—</span>28% commission per booking</li>
-                <li className="flex gap-3"><span className="text-[var(--ember)]">—</span>Tourist-facing generic profile</li>
-                <li className="flex gap-3"><span className="text-[var(--ember)]">—</span>Algorithm buries new listings</li>
-                <li className="flex gap-3"><span className="text-[var(--ember)]">—</span>Reviews from anyone, real or not</li>
-              </ul>
+              <div className="font-mono-accent text-xs uppercase text-mute">On the big platforms</div>
+              <div className="mt-2 font-display text-2xl">The old way</div>
+              <p className="mt-6 text-ink/80 leading-relaxed">
+                A homestay in Manali pays up to 30% commission on every booking. That cost gets passed on to you.
+              </p>
             </div>
             <div className="stamp-card p-8" style={{ background: "var(--teal)", color: "white", borderColor: "transparent" }}>
-              <div className="font-mono-accent text-xs uppercase text-white/60">Our way</div>
-              <div className="mt-2 font-display text-2xl text-white">Yatravo</div>
-              <ul className="mt-6 space-y-3 text-sm text-white/85">
-                <li className="flex gap-3"><span className="text-white/50">+</span>₹999/month flat — forever</li>
-                <li className="flex gap-3"><span className="text-white/50">+</span>Identity-verified reviews only</li>
-                <li className="flex gap-3"><span className="text-white/50">+</span>Tribe-matched visibility</li>
-                <li className="flex gap-3"><span className="text-white/50">+</span>Direct traveler connection — no middleman</li>
-              </ul>
+              <div className="font-mono-accent text-xs uppercase text-white/60">On Yatravo</div>
+              <div className="mt-2 font-display text-2xl text-white">The honest way</div>
+              <p className="mt-6 text-white/85 leading-relaxed">
+                Local businesses list directly. No commissions. No middlemen. The price you see is the price they actually want to charge.
+              </p>
             </div>
           </div>
         </div>
@@ -92,7 +93,7 @@ function MarketplacePage() {
       <section className="section-pad px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="eyebrow" style={{ color: "var(--ember)" }}>vendor spotlight</div>
-          <h2 className="mt-4 font-display text-4xl max-w-2xl leading-tight">Honest places, honest prices.</h2>
+          <h2 className="mt-4 font-display text-4xl max-w-2xl leading-tight">Listed by locals. Loved by travelers.</h2>
           <div className="mt-12 grid md:grid-cols-3 gap-6">
             {vendors.map((v) => (
               <div key={v.name} className="stamp-card stamp-card-ember overflow-hidden">
@@ -109,16 +110,20 @@ function MarketplacePage() {
                     <div className="font-mono-accent text-sm text-[var(--ember)]">{v.rating}★</div>
                   </div>
                   <div className="text-sm text-mute mt-1">{v.loc} · {v.cat}</div>
+                  <div className="mt-3 font-mono-accent text-[10px] uppercase tracking-wider text-[var(--ember)]">Listed by a local</div>
                   <div className="mt-4 flex items-center justify-between text-xs font-mono-accent text-mute">
                     <span>Listed since {v.since}</span>
                     <span>{v.reviews} verified reviews</span>
+                  </div>
+                  <div className="mt-3 text-[11px] text-mute leading-relaxed">
+                    Reviews from verified Yatravo passport holders only
                   </div>
                 </div>
               </div>
             ))}
           </div>
           <div className="mt-12 flex flex-wrap gap-3">
-            <Link to="/waitlist" className="pill-cta pill-primary">Browse the full marketplace</Link>
+            <Link to="/waitlist" className="pill-cta pill-primary">Explore local stays and guides — free to browse</Link>
             <Link to="/vendors" className="pill-cta pill-ghost">List your business</Link>
           </div>
         </div>
