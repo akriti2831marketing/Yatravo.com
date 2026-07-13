@@ -5,17 +5,17 @@ import { PassportCard } from "@/components/passport-card";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Yatravo — Your lifelong travel identity" },
+      { title: "Yatravo — Your free travel passport" },
       {
         name: "description",
         content:
-          "Not a booking app. A living record of every trip you've taken, every place you've loved, and every traveler going where you're going next.",
+          "Log every trip, find people going where you're going, and discover stays that actually care who shows up. Free to join. Free to use.",
       },
-      { property: "og:title", content: "Yatravo — Your lifelong travel identity" },
+      { property: "og:title", content: "Yatravo — Your free travel passport" },
       {
         property: "og:description",
         content:
-          "Log every trip, find co-travelers, and discover local stays without big-platform commissions.",
+          "Log every trip, find your tribe, and discover local stays. Free to join, free to list, no commissions.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -31,18 +31,18 @@ function Home() {
       <section className="px-6 lg:px-10 pt-16 lg:pt-24 pb-20">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="eyebrow">Your travel identity. Finally.</div>
+            <div className="eyebrow">travel differently. together.</div>
             <h1 className="mt-5 font-display font-semibold text-[40px] sm:text-5xl lg:text-[72px] leading-[1.02] tracking-tight">
-              The passport that proves who you are as a traveler.
+              Your journeys deserve to be remembered. And shared.
             </h1>
             <p className="mt-6 text-lg text-mute max-w-xl leading-relaxed">
-              Not a booking app. A living record of every trip you've taken,
-              every place you've loved, and every traveler who's going where
-              you're going next.
+              Yatravo is your free travel passport — log every trip, find people
+              going where you're going, and discover stays that actually care
+              who shows up.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/waitlist" className="pill-cta pill-primary">
-                Claim your passport
+                Build my passport — it's free
               </Link>
               <a href="#how" className="pill-cta pill-ghost">
                 See how it works
@@ -59,7 +59,7 @@ function Home() {
                 ))}
               </div>
               <div className="font-mono-accent text-xs text-mute">
-                Already 2,400 travelers on the waitlist
+                Join thousands of travelers already building their passport
               </div>
             </div>
           </div>
@@ -74,14 +74,14 @@ function Home() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
             <h2 className="font-display font-medium text-3xl lg:text-4xl leading-tight">
-              Every platform forgets you the moment you close the app.
+              You've travelled. But nobody knows it.
             </h2>
           </div>
           <div className="lg:col-span-3 space-y-6">
             {[
-              "Your 47 trips are scattered across emails, WhatsApp screenshots, and memories no one else can verify.",
-              "You've paid 25–30% commission to platforms that don't care if your guest had a good time.",
-              "You wanted a travel partner for Ladakh. You got zero tools to find one.",
+              "Every trip you've taken is stuck in old emails, WhatsApp forwards, and photos nobody can verify. Your real travel story deserves better.",
+              "You wanted someone to split that cab to Leh with. Or find a trek partner for Roopkund. But there was nowhere real to look.",
+              "The best local stays — the family homestay in Manali, the 40-year-old dhaba in Coorg — are invisible online because they can't afford the big platforms.",
             ].map((t) => (
               <div
                 key={t}
@@ -97,28 +97,28 @@ function Home() {
       {/* FEATURES */}
       <section className="px-6 lg:px-10 section-pad bg-teal-light/40">
         <div className="max-w-7xl mx-auto">
-          <div className="eyebrow">what makes us different</div>
+          <div className="eyebrow">what yatravo gives you</div>
           <h2 className="mt-4 font-display font-medium text-4xl lg:text-5xl max-w-3xl leading-tight">
-            Three things no travel platform has ever built together.
+            Three things we built because no one else did.
           </h2>
           <div className="mt-14 grid md:grid-cols-3 gap-6">
             <FeatureCard
               icon={<IconPassport />}
-              title="Your travel identity, verified."
-              body="Log every trip. Earn destination badges. Build a profile that proves your experience — not just your follower count. Your passport is yours forever, no matter what platforms come and go."
-              stat="47 destinations avg. per power traveler"
+              title="Your travel story, finally in one place."
+              body="Log every trip you've ever taken. Earn badges for the places you've loved. Build a passport that actually shows who you are as a traveler — not just who you say you are. And it's yours forever, free."
+              stat="every trip you log makes your passport richer"
             />
             <FeatureCard
               icon={<IconPeople />}
-              title="Find who's going where you're going."
-              body="Tell us your destination and dates. We find travelers with matching budgets, pace, and travel style — verified by their actual trip history, not a bio they wrote themselves."
-              stat="3.2x cheaper when 4 travelers share"
+              title="Find your people before the trip, not after."
+              body="Tell us where you're headed and when. We find real travelers — verified by their actual trip history — who match your budget, pace, and travel style. No randoms. No guesswork. Just the right people."
+              stat="trips are better when the right people join"
             />
             <FeatureCard
               icon={<IconStore />}
-              title="The stays and guides that don't advertise."
-              body="A family homestay in Manali. A dhaba in Coorg that's been there 40 years. Local guides who actually live there. They pay a flat fee — not 30% commission — so their prices stay honest."
-              stat="₹999/mo flat vs 28% OTA commission"
+              title="Discover places that don't show up on Google."
+              body="A homestay run by a family who's lived there for generations. A local guide who knows the trail nobody else takes. A dhaba that's been feeding travelers for 40 years. Real places. Real people. No middlemen."
+              stat="honest prices because nobody takes a cut"
               ember
             />
           </div>
@@ -129,25 +129,25 @@ function Home() {
       <section id="how" className="section-pad px-6 lg:px-10 bg-ink text-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-display font-medium text-4xl lg:text-5xl text-white max-w-3xl leading-tight">
-            From zero to your first trip in 10 minutes.
+            Get started in under 5 minutes. No credit card. No catch.
           </h2>
           <div className="mt-16 grid md:grid-cols-3 gap-10 relative">
             <div className="hidden md:block absolute top-6 left-[16%] right-[16%] h-px bg-teal/40" />
             {[
               {
                 n: "01",
-                t: "Create your passport",
-                d: "Import trips from Gmail or log manually. Your history is verified, not self-reported.",
+                t: "Build your passport",
+                d: "Log your past trips or start fresh. Your travel history builds up over time — every destination, every badge, every memory.",
               },
               {
                 n: "02",
                 t: "Find your tribe",
-                d: "Set your next destination. We surface travelers who match your vibe, budget, and pace.",
+                d: "Tell us your next destination and dates. We'll show you real travelers heading the same way, matched by budget and travel style.",
               },
               {
                 n: "03",
-                t: "Book local",
-                d: "Browse our vendor marketplace. Flat prices. Verified reviews from real passport holders only.",
+                t: "Discover local",
+                d: "Browse homestays, guides, and hidden gems handpicked by travelers who've actually been there. No commissions, no inflated prices.",
               },
             ].map((s) => (
               <div key={s.n} className="relative">
@@ -167,22 +167,22 @@ function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="eyebrow">from the road</div>
           <h2 className="mt-4 font-display font-medium text-4xl lg:text-5xl max-w-2xl leading-tight">
-            Real travelers. Real homestays. Real numbers.
+            Real travelers. Real homestays. Real stories.
           </h2>
           <div className="mt-12 grid md:grid-cols-3 gap-6">
             <Quote
-              q="I found 3 travel partners for Spiti Valley in under 2 days. We split costs, shared a cab, and saved ₹4,200 each."
+              q="I'd been solo travelling for years but always struggled to find the right co-traveler. Found my Spiti squad through Yatravo in two days. We're planning our next trip already."
               n="Ananya S."
               w="Mumbai"
             />
             <Quote
-              q="We listed our guesthouse on Booking.com and paid ₹18,000 in commission last month. Here we pay ₹999. That's it."
+              q="We've been running our guesthouse in Manali for 12 years. Yatravo was the first platform that actually felt like it was built for places like ours, not just for the big hotels."
               n="Ranjit D."
-              w="Manali Homestay Owner"
+              w="Manali"
               ember
             />
             <Quote
-              q="My passport has 23 trips logged. When I meet other travelers, I just show them my profile. Instant credibility."
+              q="I log every trip I take now. When I meet other travelers, I share my Yatravo passport. It's the most honest travel profile I've ever had."
               n="Vikram T."
               w="Bangalore"
             />
@@ -194,8 +194,11 @@ function Home() {
       <section className="section-pad px-6 lg:px-10" style={{ background: "var(--teal)" }}>
         <div className="max-w-4xl mx-auto text-center text-white">
           <h2 className="font-display font-semibold text-4xl lg:text-5xl text-white leading-tight">
-            Your next trip starts with knowing who you are as a traveler.
+            Ready to travel like you mean it?
           </h2>
+          <p className="mt-6 text-lg text-white/85 max-w-2xl mx-auto">
+            Join Yatravo free. Log your first trip today. Find who's going where you're going next.
+          </p>
           <form
             onSubmit={(e) => e.preventDefault()}
             className="mt-10 flex flex-col sm:flex-row gap-3 max-w-xl mx-auto"
@@ -203,15 +206,15 @@ function Home() {
             <input
               type="email"
               required
-              placeholder="you@email.com"
+              placeholder="Your email address"
               className="flex-1 px-5 py-3.5 rounded-full bg-white/10 border border-white/25 text-white placeholder:text-white/55 focus:outline-none focus:bg-white/15 focus:border-white"
             />
             <button className="pill-cta bg-white text-teal hover:bg-canvas">
-              Join the waitlist
+              Start my journey — it's free
             </button>
           </form>
           <div className="mt-4 text-sm text-white/70">
-            No spam. No booking fees. Just your passport.
+            No subscription. No credit card. Just your passport.
           </div>
         </div>
       </section>
