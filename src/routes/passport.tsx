@@ -31,6 +31,7 @@ function PassportPage() {
   const [confirmedIds, setConfirmedIds] = useState<Set<string>>(new Set());
   const [displayName, setDisplayName] = useState("Traveler");
   const [modalOpen, setModalOpen] = useState(false);
+  const [photoOpen, setPhotoOpen] = useState(false);
 
   const loadAll = useCallback(async (uid: string) => {
     const [{ data: tripsData }, { data: profile }] = await Promise.all([
