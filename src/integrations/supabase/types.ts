@@ -66,41 +66,56 @@ export type Database = {
       }
       trips: {
         Row: {
+          best_photo_url: string | null
           budget_tier: string | null
           created_at: string
           destination: string
+          destination_type: string | null
           end_date: string
           gmail_verified: boolean
           id: string
+          logged_via: string
+          mood_tags: string[] | null
           note: string | null
           photo_urls: string[] | null
           start_date: string
+          state: string | null
           travel_style: string | null
           user_id: string
         }
         Insert: {
+          best_photo_url?: string | null
           budget_tier?: string | null
           created_at?: string
           destination: string
+          destination_type?: string | null
           end_date: string
           gmail_verified?: boolean
           id?: string
+          logged_via?: string
+          mood_tags?: string[] | null
           note?: string | null
           photo_urls?: string[] | null
           start_date: string
+          state?: string | null
           travel_style?: string | null
           user_id: string
         }
         Update: {
+          best_photo_url?: string | null
           budget_tier?: string | null
           created_at?: string
           destination?: string
+          destination_type?: string | null
           end_date?: string
           gmail_verified?: boolean
           id?: string
+          logged_via?: string
+          mood_tags?: string[] | null
           note?: string | null
           photo_urls?: string[] | null
           start_date?: string
+          state?: string | null
           travel_style?: string | null
           user_id?: string
         }

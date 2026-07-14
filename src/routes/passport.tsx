@@ -1,10 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Camera, Sparkles } from "lucide-react";
 import { SiteShell } from "@/components/site-chrome";
 import { PassportSummary } from "@/components/passport-summary";
 import { TripList } from "@/components/trip-list";
 import { LogTripModal } from "@/components/log-trip-modal";
+import { PhotoDropModal } from "@/components/photo-drop-modal";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 import { computeBadges, computeTrustScore, type Trip } from "@/lib/trips";
@@ -30,6 +31,7 @@ function PassportPage() {
   const [confirmedIds, setConfirmedIds] = useState<Set<string>>(new Set());
   const [displayName, setDisplayName] = useState("Traveler");
   const [modalOpen, setModalOpen] = useState(false);
+  const [photoOpen, setPhotoOpen] = useState(false);
 
   const loadAll = useCallback(async (uid: string) => {
     const [{ data: tripsData }, { data: profile }] = await Promise.all([
@@ -79,9 +81,14 @@ function PassportPage() {
             <div className="eyebrow">your passport</div>
             <h1 className="mt-2 font-display text-3xl md:text-4xl">Travel Passport</h1>
           </div>
-          <button onClick={() => setModalOpen(true)} className="hidden sm:inline-flex pill-cta pill-primary">
-            <Plus className="w-4 h-4" /> Log a trip
-          </button>
+          <div className="hidden sm:flex flex-col items-end gap-2">
+            <button onClick={() => setPhotoOpen(true)} className="pill-cta pill-primary text-base px-6 py-3">
+              <Sparkles className="w-4 h-4" /> Log a trip from photos
+            </button>
+            <button onClick={() => setModalOpen(true)} className="text-xs text-mute hover:text-teal inline-flex items-center gap-1">
+              <Plus className="w-3 h-3" /> or log a trip manually
+            </button>
+          </div>
         </div>
 
         <PassportSummary name={displayName} trips={trips} trustScore={trustScore} />
@@ -114,27 +121,47 @@ function PassportPage() {
               <p className="mt-2 text-mute max-w-sm mx-auto">
                 Log your first trip to start earning badges.
               </p>
-              <button onClick={() => setModalOpen(true)} className="mt-6 pill-cta pill-primary">
-                <Plus className="w-4 h-4" /> Log a trip
-              </button>
+              <div className="mt-6 flex flex-col sm:flex-row gap-2 justify-center">
+                <button onClick={() => setPhotoOpen(true)} className="pill-cta pill-primary">
+                  <Sparkles className="w-4 h-4" /> Log a trip from photos
+                </button>
+                <button onClick={() => setModalOpen(true)} className="pill-cta bg-white border border-sand text-ink hover:border-teal">
+                  <Plus className="w-4 h-4" /> Log manually
+                </button>
+              </div>
             </div>
           ) : (
             <TripList trips={trips} />
           )}
         </div>
 
-        <button
-          onClick={() => setModalOpen(true)}
-          className="sm:hidden fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-teal text-white shadow-lg flex items-center justify-center"
-          aria-label="Log a trip"
-        >
-          <Plus className="w-6 h-6" />
-        </button>
+        <div className="sm:hidden fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
+          <button
+            onClick={() => setModalOpen(true)}
+            className="w-12 h-12 rounded-full bg-white border border-sand text-ink shadow-md flex items-center justify-center"
+            aria-label="Log a trip manually"
+          >
+            <Plus className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => setPhotoOpen(true)}
+            className="w-14 h-14 rounded-full bg-teal text-white shadow-lg flex items-center justify-center"
+            aria-label="Log a trip from photos"
+          >
+            <Camera className="w-6 h-6" />
+          </button>
+        </div>
       </section>
 
       <LogTripModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
+        onSaved={() => loadAll(user.id)}
+        userId={user.id}
+      />
+      <PhotoDropModal
+        open={photoOpen}
+        onClose={() => setPhotoOpen(false)}
         onSaved={() => loadAll(user.id)}
         userId={user.id}
       />
