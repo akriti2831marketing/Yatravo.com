@@ -159,6 +159,12 @@ function PassportPage() {
         onSaved={() => loadAll(user.id)}
         userId={user.id}
       />
+      <PhotoDropModal
+        open={photoOpen}
+        onClose={() => setPhotoOpen(false)}
+        onSaved={() => loadAll(user.id)}
+        userId={user.id}
+      />
     </SiteShell>
   );
 }
