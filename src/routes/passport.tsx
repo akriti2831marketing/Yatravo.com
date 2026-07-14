@@ -1,10 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Camera, Sparkles } from "lucide-react";
 import { SiteShell } from "@/components/site-chrome";
 import { PassportSummary } from "@/components/passport-summary";
 import { TripList } from "@/components/trip-list";
 import { LogTripModal } from "@/components/log-trip-modal";
+import { PhotoDropModal } from "@/components/photo-drop-modal";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 import { computeBadges, computeTrustScore, type Trip } from "@/lib/trips";
