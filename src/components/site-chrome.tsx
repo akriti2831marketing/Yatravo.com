@@ -27,6 +27,7 @@ export function SiteNav() {
 
   const links = [
     { to: "/passport", label: "Passport" },
+    { to: "/assistant", label: "Travel assistant" },
     { to: "/tribe", label: "Find your tribe" },
     { to: "/marketplace", label: "Local stays" },
     { to: "/vendors", label: "For local businesses" },
@@ -151,12 +152,15 @@ export function SiteFooter() {
   );
 }
 
+import { OnTripFab } from "@/components/on-trip-fab";
+
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-canvas">
       <SiteNav />
       <main className="pt-16">{children}</main>
       <SiteFooter />
+      <OnTripFab />
     </div>
   );
 }
