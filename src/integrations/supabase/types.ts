@@ -44,6 +44,151 @@ export type Database = {
         }
         Relationships: []
       }
+      creator_followers: {
+        Row: {
+          creator_id: string
+          followed_at: string
+          follower_user_id: string
+          id: string
+        }
+        Insert: {
+          creator_id: string
+          followed_at?: string
+          follower_user_id: string
+          id?: string
+        }
+        Update: {
+          creator_id?: string
+          followed_at?: string
+          follower_user_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creator_followers_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "creator_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      creator_profile_views: {
+        Row: {
+          creator_id: string
+          id: string
+          viewed_at: string
+          viewer_user_id: string | null
+        }
+        Insert: {
+          creator_id: string
+          id?: string
+          viewed_at?: string
+          viewer_user_id?: string | null
+        }
+        Update: {
+          creator_id?: string
+          id?: string
+          viewed_at?: string
+          viewer_user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creator_profile_views_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "creator_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      creator_profiles: {
+        Row: {
+          allow_join_requests: boolean
+          bio: string | null
+          commitment_agreed: boolean
+          commitment_agreed_at: string | null
+          content_styles: string[] | null
+          cover_photo_url: string | null
+          created_at: string
+          creator_name: string
+          handle: string
+          id: string
+          instagram_connected_at: string | null
+          instagram_followers: number | null
+          instagram_profile_pic: string | null
+          instagram_username: string | null
+          primary_platform: string | null
+          profile_views: number
+          show_instagram_count: boolean
+          show_upcoming_trips: boolean
+          updated_at: string
+          user_id: string
+          verified_at: string | null
+          verified_creator: boolean
+          website_url: string | null
+          years_travelling: string | null
+          youtube_subscribers: number | null
+          youtube_username: string | null
+        }
+        Insert: {
+          allow_join_requests?: boolean
+          bio?: string | null
+          commitment_agreed?: boolean
+          commitment_agreed_at?: string | null
+          content_styles?: string[] | null
+          cover_photo_url?: string | null
+          created_at?: string
+          creator_name: string
+          handle: string
+          id?: string
+          instagram_connected_at?: string | null
+          instagram_followers?: number | null
+          instagram_profile_pic?: string | null
+          instagram_username?: string | null
+          primary_platform?: string | null
+          profile_views?: number
+          show_instagram_count?: boolean
+          show_upcoming_trips?: boolean
+          updated_at?: string
+          user_id: string
+          verified_at?: string | null
+          verified_creator?: boolean
+          website_url?: string | null
+          years_travelling?: string | null
+          youtube_subscribers?: number | null
+          youtube_username?: string | null
+        }
+        Update: {
+          allow_join_requests?: boolean
+          bio?: string | null
+          commitment_agreed?: boolean
+          commitment_agreed_at?: string | null
+          content_styles?: string[] | null
+          cover_photo_url?: string | null
+          created_at?: string
+          creator_name?: string
+          handle?: string
+          id?: string
+          instagram_connected_at?: string | null
+          instagram_followers?: number | null
+          instagram_profile_pic?: string | null
+          instagram_username?: string | null
+          primary_platform?: string | null
+          profile_views?: number
+          show_instagram_count?: boolean
+          show_upcoming_trips?: boolean
+          updated_at?: string
+          user_id?: string
+          verified_at?: string | null
+          verified_creator?: boolean
+          website_url?: string | null
+          years_travelling?: string | null
+          youtube_subscribers?: number | null
+          youtube_username?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -94,6 +239,51 @@ export type Database = {
           },
         ]
       }
+      trip_join_requests: {
+        Row: {
+          creator_id: string
+          id: string
+          requested_at: string
+          requester_user_id: string
+          responded_at: string | null
+          status: string
+          trip_id: string
+        }
+        Insert: {
+          creator_id: string
+          id?: string
+          requested_at?: string
+          requester_user_id: string
+          responded_at?: string | null
+          status?: string
+          trip_id: string
+        }
+        Update: {
+          creator_id?: string
+          id?: string
+          requested_at?: string
+          requester_user_id?: string
+          responded_at?: string | null
+          status?: string
+          trip_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trip_join_requests_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "creator_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trip_join_requests_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       trips: {
         Row: {
           best_photo_url: string | null
@@ -104,6 +294,7 @@ export type Database = {
           end_date: string
           gmail_verified: boolean
           id: string
+          is_public: boolean
           logged_via: string
           mood_tags: string[] | null
           note: string | null
@@ -111,6 +302,7 @@ export type Database = {
           start_date: string
           state: string | null
           travel_style: string | null
+          trip_type: string
           user_id: string
         }
         Insert: {
@@ -122,6 +314,7 @@ export type Database = {
           end_date: string
           gmail_verified?: boolean
           id?: string
+          is_public?: boolean
           logged_via?: string
           mood_tags?: string[] | null
           note?: string | null
@@ -129,6 +322,7 @@ export type Database = {
           start_date: string
           state?: string | null
           travel_style?: string | null
+          trip_type?: string
           user_id: string
         }
         Update: {
@@ -140,6 +334,7 @@ export type Database = {
           end_date?: string
           gmail_verified?: boolean
           id?: string
+          is_public?: boolean
           logged_via?: string
           mood_tags?: string[] | null
           note?: string | null
@@ -147,6 +342,7 @@ export type Database = {
           start_date?: string
           state?: string | null
           travel_style?: string | null
+          trip_type?: string
           user_id?: string
         }
         Relationships: []
@@ -168,6 +364,54 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      vendor_creator_endorsements: {
+        Row: {
+          created_at: string
+          creator_confirmed: boolean
+          creator_id: string
+          id: string
+          stay_month: string | null
+          stay_year: number | null
+          trip_id: string | null
+          vendor_id: string
+        }
+        Insert: {
+          created_at?: string
+          creator_confirmed?: boolean
+          creator_id: string
+          id?: string
+          stay_month?: string | null
+          stay_year?: number | null
+          trip_id?: string | null
+          vendor_id: string
+        }
+        Update: {
+          created_at?: string
+          creator_confirmed?: boolean
+          creator_id?: string
+          id?: string
+          stay_month?: string | null
+          stay_year?: number | null
+          trip_id?: string | null
+          vendor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vendor_creator_endorsements_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "creator_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vendor_creator_endorsements_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
