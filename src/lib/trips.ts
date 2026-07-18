@@ -13,6 +13,13 @@ export type Trip = {
   photo_urls: string[] | null;
   gmail_verified: boolean;
   created_at: string;
+  state?: string | null;
+  destination_type?: string | null;
+  best_photo_url?: string | null;
+  mood_tags?: string[] | null;
+  logged_via?: string;
+  is_public?: boolean;
+  trip_type?: "past" | "upcoming";
 };
 
 export type Confirmation = { id: string; trip_id: string };
