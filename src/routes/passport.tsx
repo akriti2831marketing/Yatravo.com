@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
-import { Plus, Camera, Sparkles } from "lucide-react";
+import { Plus, Camera, Sparkles, Star } from "lucide-react";
 import { SiteShell } from "@/components/site-chrome";
 import { PassportSummary } from "@/components/passport-summary";
 import { TripList } from "@/components/trip-list";
