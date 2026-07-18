@@ -36,13 +36,15 @@ function PassportPage() {
   const [creatorHandle, setCreatorHandle] = useState<string | null>(null);
 
   const loadAll = useCallback(async (uid: string) => {
-    const [{ data: tripsData }, { data: profile }] = await Promise.all([
+    const [{ data: tripsData }, { data: profile }, { data: creator }] = await Promise.all([
       supabase.from("trips").select("*").eq("user_id", uid).order("start_date", { ascending: false }),
       supabase.from("profiles").select("display_name").eq("user_id", uid).maybeSingle(),
+      supabase.from("creator_profiles").select("handle").eq("user_id", uid).maybeSingle(),
     ]);
     const t = (tripsData ?? []) as Trip[];
     setTrips(t);
     if (profile?.display_name) setDisplayName(profile.display_name);
+    setCreatorHandle(creator?.handle ?? null);
     if (t.length > 0) {
       const { data: confs } = await supabase
         .from("trip_confirmations")
