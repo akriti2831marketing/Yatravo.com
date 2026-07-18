@@ -6,6 +6,7 @@ import { PassportSummary } from "@/components/passport-summary";
 import { TripList } from "@/components/trip-list";
 import { LogTripModal } from "@/components/log-trip-modal";
 import { PhotoDropModal } from "@/components/photo-drop-modal";
+import { CreatorSetupModal } from "@/components/creator-setup-modal";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 import { computeBadges, computeTrustScore, type Trip } from "@/lib/trips";
