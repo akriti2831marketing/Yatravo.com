@@ -155,6 +155,26 @@ function PassportPage() {
             <Camera className="w-6 h-6" />
           </button>
         </div>
+
+        {/* Become a creator */}
+        <div className="mt-10 bg-white border border-sand rounded-2xl p-5 flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full bg-teal/10 text-teal flex items-center justify-center shrink-0">
+            <Star className="w-5 h-5" />
+          </div>
+          <div className="flex-1">
+            <div className="font-display text-lg">Are you a travel creator?</div>
+            <p className="text-sm text-mute mt-1">
+              {creatorHandle
+                ? "Your creator profile is live — manage it from your dashboard."
+                : "Activate your creator profile — show your audience the destinations you've actually been to."}
+            </p>
+          </div>
+          {creatorHandle ? (
+            <Link to="/creator/dashboard" className="pill-cta bg-white border border-sand text-ink hover:border-teal text-sm shrink-0">Dashboard</Link>
+          ) : (
+            <button onClick={() => setCreatorSetupOpen(true)} className="pill-cta pill-ghost text-sm shrink-0">Activate creator profile</button>
+          )}
+        </div>
       </section>
 
       <LogTripModal
@@ -168,6 +188,13 @@ function PassportPage() {
         onClose={() => setPhotoOpen(false)}
         onSaved={() => loadAll(user.id)}
         userId={user.id}
+      />
+      <CreatorSetupModal
+        open={creatorSetupOpen}
+        onClose={() => setCreatorSetupOpen(false)}
+        userId={user.id}
+        seedDestinations={trips.map((t) => t.destination)}
+        onDone={(h) => { setCreatorSetupOpen(false); setCreatorHandle(h); navigate({ to: "/creator/$handle", params: { handle: h } }); }}
       />
     </SiteShell>
   );
