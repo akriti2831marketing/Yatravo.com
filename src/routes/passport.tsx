@@ -195,7 +195,7 @@ function PassportPage() {
         onClose={() => setCreatorSetupOpen(false)}
         userId={user.id}
         seedDestinations={trips.map((t) => t.destination)}
-        onDone={(h) => { setCreatorSetupOpen(false); setCreatorHandle(h); navigate({ to: "/creator/$handle", params: { handle: h } }); }}
+        onDone={(h: string) => { setCreatorSetupOpen(false); setCreatorHandle(h); navigate({ to: "/creator/$handle", params: { handle: h } }); }}
       />
     </SiteShell>
   );
