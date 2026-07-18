@@ -29,6 +29,7 @@ export function SiteNav() {
     { to: "/passport", label: "Passport" },
     { to: "/assistant", label: "Travel assistant" },
     { to: "/tribe", label: "Find your tribe" },
+    { to: "/creators", label: "Creators" },
     { to: "/marketplace", label: "Local stays" },
     { to: "/vendors", label: "For local businesses" },
   ] as const;
