@@ -1,11 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
-import { Plus, Camera, Sparkles } from "lucide-react";
+import { Plus, Camera, Sparkles, Star } from "lucide-react";
 import { SiteShell } from "@/components/site-chrome";
 import { PassportSummary } from "@/components/passport-summary";
 import { TripList } from "@/components/trip-list";
 import { LogTripModal } from "@/components/log-trip-modal";
 import { PhotoDropModal } from "@/components/photo-drop-modal";
+import { CreatorSetupModal } from "@/components/creator-setup-modal";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 import { computeBadges, computeTrustScore, type Trip } from "@/lib/trips";
@@ -32,15 +33,19 @@ function PassportPage() {
   const [displayName, setDisplayName] = useState("Traveler");
   const [modalOpen, setModalOpen] = useState(false);
   const [photoOpen, setPhotoOpen] = useState(false);
+  const [creatorSetupOpen, setCreatorSetupOpen] = useState(false);
+  const [creatorHandle, setCreatorHandle] = useState<string | null>(null);
 
   const loadAll = useCallback(async (uid: string) => {
-    const [{ data: tripsData }, { data: profile }] = await Promise.all([
+    const [{ data: tripsData }, { data: profile }, { data: creator }] = await Promise.all([
       supabase.from("trips").select("*").eq("user_id", uid).order("start_date", { ascending: false }),
       supabase.from("profiles").select("display_name").eq("user_id", uid).maybeSingle(),
+      supabase.from("creator_profiles").select("handle").eq("user_id", uid).maybeSingle(),
     ]);
     const t = (tripsData ?? []) as Trip[];
     setTrips(t);
     if (profile?.display_name) setDisplayName(profile.display_name);
+    setCreatorHandle(creator?.handle ?? null);
     if (t.length > 0) {
       const { data: confs } = await supabase
         .from("trip_confirmations")
@@ -151,6 +156,26 @@ function PassportPage() {
             <Camera className="w-6 h-6" />
           </button>
         </div>
+
+        {/* Become a creator */}
+        <div className="mt-10 bg-white border border-sand rounded-2xl p-5 flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full bg-teal/10 text-teal flex items-center justify-center shrink-0">
+            <Star className="w-5 h-5" />
+          </div>
+          <div className="flex-1">
+            <div className="font-display text-lg">Are you a travel creator?</div>
+            <p className="text-sm text-mute mt-1">
+              {creatorHandle
+                ? "Your creator profile is live — manage it from your dashboard."
+                : "Activate your creator profile — show your audience the destinations you've actually been to."}
+            </p>
+          </div>
+          {creatorHandle ? (
+            <Link to="/creator/dashboard" className="pill-cta bg-white border border-sand text-ink hover:border-teal text-sm shrink-0">Dashboard</Link>
+          ) : (
+            <button onClick={() => setCreatorSetupOpen(true)} className="pill-cta pill-ghost text-sm shrink-0">Activate creator profile</button>
+          )}
+        </div>
       </section>
 
       <LogTripModal
@@ -164,6 +189,13 @@ function PassportPage() {
         onClose={() => setPhotoOpen(false)}
         onSaved={() => loadAll(user.id)}
         userId={user.id}
+      />
+      <CreatorSetupModal
+        open={creatorSetupOpen}
+        onClose={() => setCreatorSetupOpen(false)}
+        userId={user.id}
+        seedDestinations={trips.map((t) => t.destination)}
+        onDone={(h: string) => { setCreatorSetupOpen(false); setCreatorHandle(h); navigate({ to: "/creator/$handle", params: { handle: h } }); }}
       />
     </SiteShell>
   );

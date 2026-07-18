@@ -15,9 +15,12 @@ import { Route as TribeRouteImport } from './routes/tribe'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PassportRouteImport } from './routes/passport'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
+import { Route as CreatorsRouteImport } from './routes/creators'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreatorDashboardRouteImport } from './routes/creator.dashboard'
+import { Route as CreatorHandleRouteImport } from './routes/creator.$handle'
 
 const WaitlistRoute = WaitlistRouteImport.update({
   id: '/waitlist',
@@ -49,6 +52,11 @@ const MarketplaceRoute = MarketplaceRouteImport.update({
   path: '/marketplace',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreatorsRoute = CreatorsRouteImport.update({
+  id: '/creators',
+  path: '/creators',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -64,40 +72,59 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreatorDashboardRoute = CreatorDashboardRouteImport.update({
+  id: '/creator/dashboard',
+  path: '/creator/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorHandleRoute = CreatorHandleRouteImport.update({
+  id: '/creator/$handle',
+  path: '/creator/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
+  '/creators': typeof CreatorsRoute
   '/marketplace': typeof MarketplaceRoute
   '/passport': typeof PassportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tribe': typeof TribeRoute
   '/vendors': typeof VendorsRoute
   '/waitlist': typeof WaitlistRoute
+  '/creator/$handle': typeof CreatorHandleRoute
+  '/creator/dashboard': typeof CreatorDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
+  '/creators': typeof CreatorsRoute
   '/marketplace': typeof MarketplaceRoute
   '/passport': typeof PassportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tribe': typeof TribeRoute
   '/vendors': typeof VendorsRoute
   '/waitlist': typeof WaitlistRoute
+  '/creator/$handle': typeof CreatorHandleRoute
+  '/creator/dashboard': typeof CreatorDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
+  '/creators': typeof CreatorsRoute
   '/marketplace': typeof MarketplaceRoute
   '/passport': typeof PassportRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tribe': typeof TribeRoute
   '/vendors': typeof VendorsRoute
   '/waitlist': typeof WaitlistRoute
+  '/creator/$handle': typeof CreatorHandleRoute
+  '/creator/dashboard': typeof CreatorDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -105,46 +132,58 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/auth'
+    | '/creators'
     | '/marketplace'
     | '/passport'
     | '/sitemap.xml'
     | '/tribe'
     | '/vendors'
     | '/waitlist'
+    | '/creator/$handle'
+    | '/creator/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/assistant'
     | '/auth'
+    | '/creators'
     | '/marketplace'
     | '/passport'
     | '/sitemap.xml'
     | '/tribe'
     | '/vendors'
     | '/waitlist'
+    | '/creator/$handle'
+    | '/creator/dashboard'
   id:
     | '__root__'
     | '/'
     | '/assistant'
     | '/auth'
+    | '/creators'
     | '/marketplace'
     | '/passport'
     | '/sitemap.xml'
     | '/tribe'
     | '/vendors'
     | '/waitlist'
+    | '/creator/$handle'
+    | '/creator/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
   AuthRoute: typeof AuthRoute
+  CreatorsRoute: typeof CreatorsRoute
   MarketplaceRoute: typeof MarketplaceRoute
   PassportRoute: typeof PassportRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TribeRoute: typeof TribeRoute
   VendorsRoute: typeof VendorsRoute
   WaitlistRoute: typeof WaitlistRoute
+  CreatorHandleRoute: typeof CreatorHandleRoute
+  CreatorDashboardRoute: typeof CreatorDashboardRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -191,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketplaceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/creators': {
+      id: '/creators'
+      path: '/creators'
+      fullPath: '/creators'
+      preLoaderRoute: typeof CreatorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -212,6 +258,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/creator/dashboard': {
+      id: '/creator/dashboard'
+      path: '/creator/dashboard'
+      fullPath: '/creator/dashboard'
+      preLoaderRoute: typeof CreatorDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creator/$handle': {
+      id: '/creator/$handle'
+      path: '/creator/$handle'
+      fullPath: '/creator/$handle'
+      preLoaderRoute: typeof CreatorHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -219,23 +279,16 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
   AuthRoute: AuthRoute,
+  CreatorsRoute: CreatorsRoute,
   MarketplaceRoute: MarketplaceRoute,
   PassportRoute: PassportRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TribeRoute: TribeRoute,
   VendorsRoute: VendorsRoute,
   WaitlistRoute: WaitlistRoute,
+  CreatorHandleRoute: CreatorHandleRoute,
+  CreatorDashboardRoute: CreatorDashboardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
