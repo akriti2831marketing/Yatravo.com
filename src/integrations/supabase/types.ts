@@ -189,6 +189,56 @@ export type Database = {
         }
         Relationships: []
       }
+      creator_trails: {
+        Row: {
+          best_seasons: string[] | null
+          created_at: string
+          description: string | null
+          difficulty: string | null
+          duration_days: number | null
+          id: string
+          is_public: boolean
+          name: string
+          raahi_id: string
+          save_count: number
+          updated_at: string
+        }
+        Insert: {
+          best_seasons?: string[] | null
+          created_at?: string
+          description?: string | null
+          difficulty?: string | null
+          duration_days?: number | null
+          id?: string
+          is_public?: boolean
+          name: string
+          raahi_id: string
+          save_count?: number
+          updated_at?: string
+        }
+        Update: {
+          best_seasons?: string[] | null
+          created_at?: string
+          description?: string | null
+          difficulty?: string | null
+          duration_days?: number | null
+          id?: string
+          is_public?: boolean
+          name?: string
+          raahi_id?: string
+          save_count?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creator_trails_raahi_id_fkey"
+            columns: ["raahi_id"]
+            isOneToOne: false
+            referencedRelation: "raahi_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -206,6 +256,264 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      raahi_followers: {
+        Row: {
+          followed_at: string
+          follower_user_id: string
+          id: string
+          raahi_id: string
+        }
+        Insert: {
+          followed_at?: string
+          follower_user_id: string
+          id?: string
+          raahi_id: string
+        }
+        Update: {
+          followed_at?: string
+          follower_user_id?: string
+          id?: string
+          raahi_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "raahi_followers_raahi_id_fkey"
+            columns: ["raahi_id"]
+            isOneToOne: false
+            referencedRelation: "raahi_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      raahi_profile_views: {
+        Row: {
+          id: string
+          raahi_id: string
+          viewed_at: string
+          viewer_user_id: string | null
+        }
+        Insert: {
+          id?: string
+          raahi_id: string
+          viewed_at?: string
+          viewer_user_id?: string | null
+        }
+        Update: {
+          id?: string
+          raahi_id?: string
+          viewed_at?: string
+          viewer_user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "raahi_profile_views_raahi_id_fkey"
+            columns: ["raahi_id"]
+            isOneToOne: false
+            referencedRelation: "raahi_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      raahi_profiles: {
+        Row: {
+          allow_join_requests: boolean
+          bio: string | null
+          commitment_agreed: boolean
+          commitment_agreed_at: string | null
+          content_styles: string[] | null
+          cover_photo_url: string | null
+          created_at: string
+          handle: string
+          id: string
+          instagram_url: string | null
+          other_url: string | null
+          profile_views: number
+          raahi_name: string
+          show_upcoming_trips: boolean
+          updated_at: string
+          user_id: string
+          verified_at: string | null
+          verified_raahi: boolean
+          website_url: string | null
+          years_travelling: string | null
+          youtube_url: string | null
+        }
+        Insert: {
+          allow_join_requests?: boolean
+          bio?: string | null
+          commitment_agreed?: boolean
+          commitment_agreed_at?: string | null
+          content_styles?: string[] | null
+          cover_photo_url?: string | null
+          created_at?: string
+          handle: string
+          id?: string
+          instagram_url?: string | null
+          other_url?: string | null
+          profile_views?: number
+          raahi_name: string
+          show_upcoming_trips?: boolean
+          updated_at?: string
+          user_id: string
+          verified_at?: string | null
+          verified_raahi?: boolean
+          website_url?: string | null
+          years_travelling?: string | null
+          youtube_url?: string | null
+        }
+        Update: {
+          allow_join_requests?: boolean
+          bio?: string | null
+          commitment_agreed?: boolean
+          commitment_agreed_at?: string | null
+          content_styles?: string[] | null
+          cover_photo_url?: string | null
+          created_at?: string
+          handle?: string
+          id?: string
+          instagram_url?: string | null
+          other_url?: string | null
+          profile_views?: number
+          raahi_name?: string
+          show_upcoming_trips?: boolean
+          updated_at?: string
+          user_id?: string
+          verified_at?: string | null
+          verified_raahi?: boolean
+          website_url?: string | null
+          years_travelling?: string | null
+          youtube_url?: string | null
+        }
+        Relationships: []
+      }
+      raahi_trip_join_requests: {
+        Row: {
+          id: string
+          raahi_id: string
+          requested_at: string
+          requester_user_id: string
+          responded_at: string | null
+          status: string
+          trip_id: string
+        }
+        Insert: {
+          id?: string
+          raahi_id: string
+          requested_at?: string
+          requester_user_id: string
+          responded_at?: string | null
+          status?: string
+          trip_id: string
+        }
+        Update: {
+          id?: string
+          raahi_id?: string
+          requested_at?: string
+          requester_user_id?: string
+          responded_at?: string | null
+          status?: string
+          trip_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "raahi_trip_join_requests_raahi_id_fkey"
+            columns: ["raahi_id"]
+            isOneToOne: false
+            referencedRelation: "raahi_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "raahi_trip_join_requests_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trail_saves: {
+        Row: {
+          id: string
+          saved_at: string
+          trail_id: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          saved_at?: string
+          trail_id: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          saved_at?: string
+          trail_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trail_saves_trail_id_fkey"
+            columns: ["trail_id"]
+            isOneToOne: false
+            referencedRelation: "creator_trails"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trail_stops: {
+        Row: {
+          created_at: string
+          days_recommended: number | null
+          destination: string
+          id: string
+          photo_url: string | null
+          raahi_note: string | null
+          state: string | null
+          stop_order: number
+          trail_id: string
+          trip_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          days_recommended?: number | null
+          destination: string
+          id?: string
+          photo_url?: string | null
+          raahi_note?: string | null
+          state?: string | null
+          stop_order: number
+          trail_id: string
+          trip_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          days_recommended?: number | null
+          destination?: string
+          id?: string
+          photo_url?: string | null
+          raahi_note?: string | null
+          state?: string | null
+          stop_order?: number
+          trail_id?: string
+          trip_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trail_stops_trail_id_fkey"
+            columns: ["trail_id"]
+            isOneToOne: false
+            referencedRelation: "creator_trails"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trail_stops_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       trip_confirmations: {
         Row: {
@@ -406,6 +714,54 @@ export type Database = {
           },
           {
             foreignKeyName: "vendor_creator_endorsements_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vendor_raahi_endorsements: {
+        Row: {
+          created_at: string
+          id: string
+          raahi_confirmed: boolean
+          raahi_id: string
+          stay_month: string | null
+          stay_year: number | null
+          trip_id: string | null
+          vendor_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          raahi_confirmed?: boolean
+          raahi_id: string
+          stay_month?: string | null
+          stay_year?: number | null
+          trip_id?: string | null
+          vendor_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          raahi_confirmed?: boolean
+          raahi_id?: string
+          stay_month?: string | null
+          stay_year?: number | null
+          trip_id?: string | null
+          vendor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vendor_raahi_endorsements_raahi_id_fkey"
+            columns: ["raahi_id"]
+            isOneToOne: false
+            referencedRelation: "raahi_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vendor_raahi_endorsements_trip_id_fkey"
             columns: ["trip_id"]
             isOneToOne: false
             referencedRelation: "trips"
